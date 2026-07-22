@@ -1,6 +1,7 @@
 #pragma once
 #include "Mesh.h"
 #include "Shader.h"
+#include <glm/glm.hpp>
 
 class Object {
 protected:
@@ -11,13 +12,11 @@ protected:
 	glm::vec3 _scale;
 	glm::vec3 _rotate;
 
-	GLint _transLoc;
-
-	glm::mat4 transformMatrix();
-
 public:
 	Object(Mesh* mesh, Shader* shader);
 	~Object();
 
-	void render();
+	Mesh* getMesh() const { return _mesh; }
+	Shader* getShader() const { return _shader; } 
+	glm::mat4 getTransformMatrix() const;
 };

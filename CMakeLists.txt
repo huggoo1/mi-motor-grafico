@@ -13,6 +13,8 @@ add_executable(MiMotor
     src/Teclado.cc
     src/Object.cc
     src/Player.cc
+    src/Camera.cc
+    src/Renderer.cc
 )
 
 # Esto le dice a tu proyecto que busque los archivos .h dentro de src
