@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "Teclado.h"
 
 class Camera {
 private:
@@ -10,8 +11,9 @@ private:
 
 	float _fov;
 	float _raw;
+	float _speed;
 
-
+	void processInput(const Teclado& input, float spedFrame);
 
 public:
 	Camera(glm::vec3 obs,
@@ -19,6 +21,8 @@ public:
 		glm::vec3 up, 
 		float fov,
 		float raw);
+
+	void update(float dt, const Teclado& input);
 
 	glm::mat4 getViewMatrix() const;
 	glm::mat4 getProjectionMatrix() const;

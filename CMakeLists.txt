@@ -4,6 +4,8 @@ project(MiMotorGrafico)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+include_directories(src)
+
 # Indicamos a CMake que busque los archivos dentro de la carpeta src
 add_executable(MiMotor 
     src/main.cc 
@@ -15,6 +17,7 @@ add_executable(MiMotor
     src/Player.cc
     src/Camera.cc
     src/Renderer.cc
+    src/ModelLoader.cc
 )
 
 # Esto le dice a tu proyecto que busque los archivos .h dentro de src

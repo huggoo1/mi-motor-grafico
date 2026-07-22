@@ -11,10 +11,10 @@ Mesh::Mesh(const float* att, size_t sB, size_t aPV) : _countVertex(sB / (aPV * s
 	glBindBuffer(GL_ARRAY_BUFFER, _VBO);
 	glBufferData(GL_ARRAY_BUFFER, sB, att, GL_STATIC_DRAW);
 	
-	//VERTEXS	
+	//VERTEXS LAYOUT 0
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, aPV * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	//COLORS
+	//COLORS LAYOUT 1
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, aPV * sizeof(float), (void*)(3*sizeof(float)));
 	glEnableVertexAttribArray(1);
 

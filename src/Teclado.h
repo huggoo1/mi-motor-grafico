@@ -9,6 +9,6 @@ public:
 	Teclado(GLFWwindow* w);
 	~Teclado();
 
-	bool isKeyPressed(int key);
+	bool isKeyPressed(int key) const;
 	void wantClose() const;
 };

@@ -7,26 +7,25 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Renderer.h"
+#include "ModelLoader.h"
+
+#define ATT_PER_VETRTEX 6
 
 int main() {
     Window win(800, 600, "Mi Motor Grafico");
     if (!win.init() || !win.createWindow()) return -1;
 
     Renderer renderer;
-    
-    float vertices[] = {
-         0.0f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,
-        -0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,
-         0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f
-    };
-
-    glEnable(GL_DEPTH_TEST);
+    std::vector<float> modelVertices;
+    if (!ModelLoader::loadOBJ("models/bunny.obj", modelVertices)) {
+        return -1;
+    }
 
     Shader program("shaders/vertex.glsl", "shaders/fragment.glsl");
-    Mesh mesh_triangulo(vertices, sizeof(vertices), 6);
-    Player triangulo(&mesh_triangulo, &program);
+    Mesh mesh_triangulo(modelVertices.data(), modelVertices.size() * sizeof(float), ATT_PER_VETRTEX);
+    Player mono(&mesh_triangulo, &program);
     Teclado input(win.getNativeWindow());
-    Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 45.0f, 800.0f / 600.0f);
+    Camera camera(glm::vec3(0.0f, 0.0f, 0.5f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 45.0f, 800.0f / 600.0f);
         
     float lastFrame = 0.f;
 
@@ -40,11 +39,12 @@ int main() {
         lastFrame = frame;
 
         //UPDATE
-        triangulo.update(dt, input);
+        mono.update(dt, input);
+        camera.update(dt, input);
 
         //RENDER
         renderer.clear();
-        renderer.draw(triangulo, camera);
+        renderer.draw(mono, camera);
 
         win.swapBuffers();
         win.pollEvents();

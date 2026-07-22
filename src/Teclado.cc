@@ -3,7 +3,7 @@
 Teclado::Teclado(GLFWwindow* w) : _nativeWindow(w) {}
 Teclado::~Teclado() {}
 
-bool Teclado::isKeyPressed(int key) {
+bool Teclado::isKeyPressed(int key) const {
 	return glfwGetKey(_nativeWindow, key) == GLFW_PRESS;
 }
 

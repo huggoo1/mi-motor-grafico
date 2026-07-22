@@ -5,16 +5,16 @@ Player::Player(Mesh* mesh, Shader* shader) : Object(mesh, shader) {}
 Player::~Player() {}
 
 void Player::processInput(Teclado& input, float speedFrame) {
-	if (input.isKeyPressed(GLFW_KEY_A) || input.isKeyPressed(GLFW_KEY_LEFT)) {
+	if (input.isKeyPressed(GLFW_KEY_A)) {
      	_position.x -= speedFrame;
     }
-    if (input.isKeyPressed(GLFW_KEY_D) || input.isKeyPressed(GLFW_KEY_RIGHT)) {
+    if (input.isKeyPressed(GLFW_KEY_D) ) {
      	_position.x += speedFrame;     
     }
-    if (input.isKeyPressed(GLFW_KEY_W) || input.isKeyPressed(GLFW_KEY_UP)) {
+    if (input.isKeyPressed(GLFW_KEY_W)) {
         _position.y += speedFrame;
     }
-    if (input.isKeyPressed(GLFW_KEY_S) || input.isKeyPressed(GLFW_KEY_DOWN)) {
+    if (input.isKeyPressed(GLFW_KEY_S)) {
         _position.y -= speedFrame;
     }
 }
